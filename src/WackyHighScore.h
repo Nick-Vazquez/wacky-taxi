@@ -19,6 +19,10 @@ typedef struct {
     char name[NAME_LENGTH];
 } HighScore;
 
+void printHighScore(HighScore* score) {
+  printf("Name: %s\nScore: %d\n", score->name, score->score);
+}
+
 FILE* openFile(char* filename, char* code, bool create) {
   FILE* scoreFile = fopen(filename, code);
   // Creates a file and populates it with base scores if not selected
