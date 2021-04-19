@@ -28,13 +28,15 @@ FILE* openFile(char* filename, char* code, bool create) {
   // Creates a file and populates it with base scores if not selected
   if (scoreFile != NULL) return scoreFile;
   else if (scoreFile == NULL && !create) {
+    // If the file is nonexistent and the create flag is not true exit 100 (File error)
     exit(100);
   }
   else {
     scoreFile = fopen(filename, "w");
     for (int i = 0; i < NUM_SCORES; i++) {
       // Fill all high scores with a min of 10
-      fprintf(scoreFile, "%-10s %d\n", "Mark", 10);
+      fputs("Jo Mama   ", scoreFile);
+      fprintf(scoreFile, "%d\n", 10);
     }
     // Close and open with appropriate value
     fclose(scoreFile);
@@ -53,7 +55,8 @@ HighScore* get_HighScores(char* filename) {
   FILE* file = openFile(filename, "r", false);
 
   for (int i = 0; i < NUM_SCORES; i++) {
-    fscanf(file, "%s %d", (scores + i)->name, &(scores + i)->score);
+    fgets((scores + i)->name, NAME_LENGTH, file);
+    fscanf(file, "%d ", &(scores + i)->score);
   }
   return scores;
 }
