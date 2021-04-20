@@ -20,7 +20,7 @@ typedef struct {
 } HighScore;
 
 void printHighScore(HighScore* score) {
-  printf("Name: %s\nScore: %d\n", score->name, score->score);
+  printf("Name:  %s\nScore: %d\n", score->name, score->score);
 }
 
 FILE* openFile(char* filename, char* code, bool create) {
