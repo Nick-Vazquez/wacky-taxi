@@ -6,7 +6,8 @@
 #define MIN_SCREEN_Y 20
 #define SPACING_MARGIN 1
 
-#define LANE_WIDTH 25
+#define LANE_WIDTH 30
+#define NUM_LANES 3
 
 #ifndef SE185_GUI_H
 #define SE185_GUI_H
@@ -62,7 +63,7 @@ int titleScreen() {
   point *titleCenter = offsetCenter(stdscr, windowHeight, windowWidth);
   // Create the window with the new coordinates
   titleWindow = newwin(windowHeight, windowWidth, titleCenter->y, titleCenter->x);
-  // Print the car directly to the window
+  // Print the player directly to the window
   wprintw(titleWindow, creditCar);
   // Move cursor to start of new line
   wmove(titleWindow, creditCarHeight + SPACING_MARGIN, 0);
@@ -92,16 +93,44 @@ int titleScreen() {
 
 void printLanes(WINDOW* screen) {
   int cols, rows;
-  int numLanes = 3;
   char laneSeparator = '|';
 
   getmaxyx(screen, rows, cols);
   for (int row = 0; row < rows; row++) {
-    // move(row, (cols / 2) - ((LANE_WIDTH * numLanes) / 2));
-    for (int lane = 0; lane <= numLanes; lane++) {
-      move(row, (cols / 2) - ((LANE_WIDTH * numLanes) / 2) + (LANE_WIDTH * lane));
+    // move(row, (cols / 2) - ((LANE_WIDTH * NUM_LANES) / 2));
+    for (int lane = 0; lane <= NUM_LANES; lane++) {
+      move(row, (cols / 2) - ((LANE_WIDTH * NUM_LANES) / 2) + (LANE_WIDTH * lane));
       printw("%c", laneSeparator);
     }
   }
 }
+
+void printCarLanes(WINDOW* screen) {
+  int rows, cols;
+  char laneSeparator = '|';
+
+  getmaxyx(screen, rows, cols);
+  for (int row = rows - carHeight; row < rows; row++) {
+    // move(row, (cols / 2) - ((LANE_WIDTH * NUM_LANES) / 2));
+    for (int lane = 0; lane <= NUM_LANES; lane++) {
+      move(row, (cols / 2) - ((LANE_WIDTH * NUM_LANES) / 2) + (LANE_WIDTH * lane));
+      printw("%c", laneSeparator);
+    }
+  }
+}
+
+void printCar(WINDOW* screen, int lane) {
+  int cols, rows;
+  WINDOW* car;
+
+  if (lane < 0 || lane > NUM_LANES) exit(210);
+  getmaxyx(screen, rows, cols);
+  printCarLanes(screen);
+  refresh();
+  car = newwin(carHeight, carWidth, rows - carHeight, (cols / 2) - ((LANE_WIDTH * NUM_LANES) / 2) + (LANE_WIDTH * lane) + 3);
+  wprintw(car, player);
+  wrefresh(car);
+  refresh();
+}
+
 #endif //SE185_GUI_H

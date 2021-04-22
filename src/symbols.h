@@ -16,17 +16,17 @@ typedef struct sym{
 } symbol;
 
 
-const char* car = {
+const char* player = {
         "        _________\n"
         "       |         |\n"
         " _o_  _| ___=___ |_  _o_\n"
         "/`-'( )         ( ) /`-'\\\n"
         "|   |-|  ___*___  |-|   |\n"
         "|   | | (-+-+-+-) | |   |\n"
-        "|   |--\\_SE185C_/--|   |\n"
+        "|   |--\\_SE185JN_/--|   |\n"
         " ---                 ---"
 };
-int carHeight = 8, carWidth = 25;
+int carHeight = 8, carWidth = 26;
 
 const char* yoda = {
         " ___/     \\___\n"

@@ -13,6 +13,13 @@ int main(void) {
   startWindow();
   int i = titleScreen();
   printLanes(stdscr);
+  refresh();
+  printCar(stdscr, 0);
+  getch();
+  printCar(stdscr, 1);
+  getch();
+  printCar(stdscr, 2);
+  getch();
   endwin();
   return EXIT_SUCCESS;
 }
