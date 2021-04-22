@@ -7,7 +7,7 @@
 #define SPACING_MARGIN 1
 
 #define LANE_WIDTH 30
-#define NUM_LANES 3
+#define NUM_LANES 4
 
 #ifndef SE185_GUI_H
 #define SE185_GUI_H
@@ -123,14 +123,13 @@ void printCar(WINDOW* screen, int lane) {
   int cols, rows;
   WINDOW* car;
 
-  if (lane < 0 || lane > NUM_LANES) exit(210);
+  if (lane < 0 || lane > NUM_LANES) return;
   getmaxyx(screen, rows, cols);
   printCarLanes(screen);
   refresh();
   car = newwin(carHeight, carWidth, rows - carHeight, (cols / 2) - ((LANE_WIDTH * NUM_LANES) / 2) + (LANE_WIDTH * lane) + 3);
   wprintw(car, player);
   wrefresh(car);
-  refresh();
 }
 
 #endif //SE185_GUI_H
