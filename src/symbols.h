@@ -26,7 +26,7 @@ const char* car = {
         "|   |--\\_SE185C_/--|   |\n"
         " ---                 ---"
 };
-int carHeight = 25, carWidth = 8;
+int carHeight = 8, carWidth = 25;
 
 const char* yoda = {
         " ___/     \\___\n"

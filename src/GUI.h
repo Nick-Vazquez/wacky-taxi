@@ -6,6 +6,8 @@
 #define MIN_SCREEN_Y 20
 #define SPACING_MARGIN 1
 
+#define LANE_WIDTH 25
+
 #ifndef SE185_GUI_H
 #define SE185_GUI_H
 
@@ -20,7 +22,7 @@ void startWindow() {
   initscr();
   clear();
   noecho();
-  cbreak();	/* Line buffering disabled. pass on everything */
+  cbreak();
   refresh();
 
   // Screen Size Checking
@@ -64,22 +66,42 @@ int titleScreen() {
   wprintw(titleWindow, creditCar);
   // Move cursor to start of new line
   wmove(titleWindow, creditCarHeight + SPACING_MARGIN, 0);
-  // Print Title
+  // Print Title and add prompts
   wprintw(titleWindow, title);
-  // Add prompts
   wmove(titleWindow, creditCarHeight + titleHeight + (SPACING_MARGIN*2), offsetCenter(titleWindow, 1, 50)->x);
   wprintw(titleWindow, "%-20s %-20s", "PRESS S TO BEGIN", "PRESS L TO VIEW LEADERBOARD");
   // Refresh the window
   wrefresh(titleWindow);
 
-  c = wgetch(titleWindow);
-  switch(c)
-  {	case 's':
-      return 0;
-    case 'l':
-      return 1;
-    default:
-      return 2;
+  // Return int based on keypress
+  while (c != 'l' && c != 's') {
+    c = wgetch(titleWindow);
+    switch (c) {
+      case 's':
+        clear();
+        return 0;
+      case 'l':
+        clear();
+        return 1;
+      default:
+        continue;
+    }
+  }
+  return -1;
+}
+
+void printLanes(WINDOW* screen) {
+  int cols, rows;
+  int numLanes = 3;
+  char laneSeparator = '|';
+
+  getmaxyx(screen, rows, cols);
+  for (int row = 0; row < rows; row++) {
+    // move(row, (cols / 2) - ((LANE_WIDTH * numLanes) / 2));
+    for (int lane = 0; lane <= numLanes; lane++) {
+      move(row, (cols / 2) - ((LANE_WIDTH * numLanes) / 2) + (LANE_WIDTH * lane));
+      printw("%c", laneSeparator);
+    }
   }
 }
 #endif //SE185_GUI_H

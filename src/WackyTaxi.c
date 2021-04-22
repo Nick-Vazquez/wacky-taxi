@@ -7,11 +7,12 @@
 #include <ncurses.h>
 #include <stdlib.h>
 
+#define NUM_LANES 3
+
 int main(void) {
   startWindow();
   int i = titleScreen();
-  printw("%d", i);
-  getch();
+  printLanes(stdscr);
   endwin();
   return EXIT_SUCCESS;
 }
