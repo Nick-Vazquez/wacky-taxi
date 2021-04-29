@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+package "Board (0xF8)" {
+    Component 0xB3
+    Component 0xA7
+    Component 0x02
+    Component 0x03
+}
+note left: Is it possible to change this pointer to point to another location in mem?
+
+node "xB3" {
+    [0xAA (Obstacle)]-[0xAB (Car)]
+    [0xAB (Car)]-[0xAC (Empty)]
+}
+
+node "xA7" {
+    [0xBA (Empty)]-[0xBB (Obstacle)]
+    [0xBB (Obstacle)]-[0xBC (Empty)]
+}
+
+node "x02" {
+    [0xCA (Empty)]-[0xCB (Car)]
+    [0xCB (Car)]-[0xCC (Empty)]
+}
+
+node "x03" {
+    [0xDA (Obstacle)]-[0xDB (Car)]
+    [0xDB (Car)]-[0xDC (Empty)]
+}
+
+0xB3->xB3
+0xA7-down->xA7
+0x02-down-->x02
+0x03-down-->x03
+
+@enduml

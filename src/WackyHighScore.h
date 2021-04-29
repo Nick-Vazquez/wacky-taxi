@@ -93,7 +93,8 @@ int add_HighScore(char* filename, char* name, int score) {
   fclose(originalFile);
   fclose(newFile);
   rename("scores.tmp", filename);
-  return 1;
+  if (written) return 1;
+  return 0;
 }
 
 #endif //SE185_WACKYHIGHSCORE_H

@@ -29,23 +29,23 @@ const char* player = {
 int carHeight = 8, carWidth = 26;
 
 const char* yoda = {
-        " ___/     \\___\n"
-        "`-._)     (_,-`\n"
-        "    \\O _ O/\n"
-        "     \\ - / \n"
-        "      `-(\n"
-        "       ||\n"
-        "      _||_\n"
-        "     |-..-|\n"
-        "     |/. \\|\n"
-        "     |\\__/|\n"
-        "   ._|//\\\\|_,\n"
-        "   `-((  ))-'\n"
-        "    __\\\\//__\n"
-        "    >_ /\\ _<,\n"
-        "      '  '"
+        "      ___/     \\___\n"
+        "     `-._)     (_,-`\n"
+        "         \\O _ O/\n"
+        "          \\ - / \n"
+        "           `-(\n"
+        "            ||\n"
+        "           _||_\n"
+        "          |-..-|\n"
+        "          |/. \\|\n"
+        "          |\\__/|\n"
+        "        ._|//\\\\|_,\n"
+        "        `-((  ))-'\n"
+        "         __\\\\//__\n"
+        "         >_ /\\ _<,\n"
+        "           '  '"
 };
-int yodaHeight = 16, yodaWidth = 15;
+int yodaHeight = 16, yodaWidth = 20;
 
 const char* bike = {
         "              __\n"
@@ -61,19 +61,19 @@ const char* bike = {
 int bikeHeight = 9, bikeWidth = 24;
 
 const char* blinkerFluid = {
-        "      _\n"
-        "     /_\\\n"
-        "    .'-'.\n"
-        "  .'     '.\n"
-        " '_________'\n"
-        "(           )\n"
-        "|.---------.|\n"
-        "|: Blinker :|\n"
-        "|:  Fluid  :|\n"
-        "|'---------'|\n"
-        "(___________)"
+        "            _\n"
+        "           /_\\\n"
+        "          .'-'.\n"
+        "        .'     '.\n"
+        "       '_________'\n"
+        "      (           )\n"
+        "      |.---------.|\n"
+        "      |: Blinker :|\n"
+        "      |:  Fluid  :|\n"
+        "      |'---------'|\n"
+        "      (___________)"
 };
-int blinkerFluidHeight = 11, blinkerFluidWidth = 14;
+int blinkerFluidHeight = 11, blinkerFluidWidth = 20;
 
 const char* creditCar = {
         "                                              _____________\n"
@@ -121,11 +121,24 @@ const char* title = {
 };
 int titleHeight = 11, titleWidth = 91;
 
+const char* HighScoreTitle = {
+        "$$\\   $$\\ $$\\           $$\\              $$$$$$\\                                                    \n"
+        "$$ |  $$ |\\__|          $$ |            $$  __$$\\                                                   \n"
+        "$$ |  $$ |$$\\  $$$$$$\\  $$$$$$$\\        $$ /  \\__| $$$$$$$\\  $$$$$$\\   $$$$$$\\   $$$$$$\\   $$$$$$$\\ \n"
+        "$$$$$$$$ |$$ |$$  __$$\\ $$  __$$\\       \\$$$$$$\\  $$  _____|$$  __$$\\ $$  __$$\\ $$  __$$\\ $$  _____|\n"
+        "$$  __$$ |$$ |$$ /  $$ |$$ |  $$ |       \\____$$\\ $$ /      $$ /  $$ |$$ |  \\__|$$$$$$$$ |\\$$$$$$\\  \n"
+        "$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |      $$\\   $$ |$$ |      $$ |  $$ |$$ |      $$   ____| \\____$$\\ \n"
+        "$$ |  $$ |$$ |\\$$$$$$$ |$$ |  $$ |      \\$$$$$$  |\\$$$$$$$\\ \\$$$$$$  |$$ |      \\$$$$$$$\\ $$$$$$$  |\n"
+        "\\__|  \\__|\\__| \\____$$ |\\__|  \\__|       \\______/  \\_______| \\______/ \\__|       \\_______|\\_______/ \n"
+        "              $$\\   $$ |                                                                            \n"
+        "              \\$$$$$$  |                                                                            \n"
+        "               \\______/                                                                             \n"
+};
+int HighScoreTitleHeight = 11, HighScoreTitleWidth = 101;
+
 WINDOW* obstacle(int startY, int startX) {
   WINDOW *win;
-  srand(time(NULL));
   int num = rand() % 45;
-  // win = newwin(20, 20, 1, 1);
   switch (num) {
     case 0 ... 25:
       win = newwin(bikeHeight, bikeWidth, startY, startX);
